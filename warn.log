@@ -99,3 +99,42 @@
 [2022-12-10 18:17:27] error Error in getOrdersController TypeError: Cannot read properties of undefined (reading 'orders') 
 [2022-12-10 18:20:40] error Error in getProductsController TypeError: Cannot read properties of undefined (reading 'products') 
 [2022-12-10 18:21:07] error Error in getProductsController TypeError: Cannot read properties of undefined (reading 'products') 
+[2022-12-11 11:55:27] error Error in updateProductController MongoServerError: Performing an update on the path '_id' would modify the immutable field '_id' 
+[2022-12-11 11:56:46] error Error in updateProductController MongoServerError: Performing an update on the path '_id' would modify the immutable field '_id' 
+[2022-12-11 11:57:24] error Error in updateProductController MongoServerError: Performing an update on the path '_id' would modify the immutable field '_id' 
+[2022-12-11 12:29:11] error Error in addProductInCartContoller ReferenceError: getProductById is not defined 
+[2022-12-11 12:29:13] error Error in addProductInCartContoller ReferenceError: getProductById is not defined 
+[2022-12-11 12:29:15] error Error in addProductInCartContoller ReferenceError: getProductById is not defined 
+[2022-12-11 12:32:48] error Error in addProductInCartContoller ReferenceError: getProductById is not defined 
+[2022-12-11 12:36:03] error Error in addProductInCartContoller ReferenceError: getProductById is not defined 
+[2022-12-11 13:06:36] error Error in addProductInCartContoller MongoServerError: Performing an update on the path '_id' would modify the immutable field '_id' 
+[2022-12-11 13:19:44] error Error in addProductInCartContoller MongoServerError: Performing an update on the path '_id' would modify the immutable field '_id' 
+[2022-12-11 13:20:37] error Error in addProductInCartContoller MongoServerError: Performing an update on the path '_id' would modify the immutable field '_id' 
+[2022-12-11 13:23:23] error Error in addProductInCartContoller MongoServerError: Performing an update on the path '_id' would modify the immutable field '_id' 
+[2022-12-11 13:23:49] error Error in addProductInCartContoller MongoServerError: Performing an update on the path '_id' would modify the immutable field '_id' 
+[2022-12-11 13:26:13] error Error in addProductInCartContoller MongoServerError: Performing an update on the path '_id' would modify the immutable field '_id' 
+[2022-12-11 13:36:46] error Error in addProductInCartContoller CastError: Cast to ObjectId failed for value "{ '$eq': '6395e29b82f8799b87027560' }" (type Object) at path "_id" because of "BSONTypeError" 
+[2022-12-11 13:42:22] error Error in addProductInCartContoller CastError: Cast to ObjectId failed for value "{ '$eq': '6395e29b82f8799b87027560' }" (type Object) at path "_id" because of "BSONTypeError" 
+[2022-12-11 13:50:10] error Error in addProductInCartContoller MongoServerError: Performing an update on the path '_id' would modify the immutable field '_id' 
+[2022-12-11 13:51:25] error Error in addProductInCartContoller MongoServerError: Performing an update on the path '_id' would modify the immutable field '_id' 
+[2022-12-11 13:51:30] error Error in addProductInCartContoller MongoServerError: Performing an update on the path '_id' would modify the immutable field '_id' 
+[2022-12-11 13:52:19] error Error in addProductInCartContoller MongoServerError: Performing an update on the path '_id' would modify the immutable field '_id' 
+[2022-12-11 14:02:38] error Error in addProductInCartContoller ReferenceError: ObjectId is not defined 
+[2022-12-11 14:03:09] error Error in addProductInCartContoller MongoServerError: Performing an update on the path '_id' would modify the immutable field '_id' 
+[2022-12-11 14:03:55] error Error in addProductInCartContoller MongoServerError: Performing an update on the path '_id' would modify the immutable field '_id' 
+[2022-12-11 14:40:28] error Error in addProductInCartContoller MongoServerError: Performing an update on the path '_id' would modify the immutable field '_id' 
+[2022-12-11 14:48:57] error Error in addProductInCartContoller Error: Entity does not exist 
+[2022-12-11 14:51:43] error Error in getProductsInCartController TypeError: getByIdAndPopulate is not a function 
+[2022-12-11 14:55:48] error Error in getProductsInCartController TypeError: getByIdAndPopulate is not a function 
+[2022-12-11 14:57:11] error Error in saveOrderController TypeError: this.dao.findOne.limit is not a function 
+[2022-12-11 17:55:10] error Error in addProductInCartContoller ReferenceError: trimID is not defined 
+[2022-12-11 17:55:12] error Error in addProductInCartContoller ReferenceError: trimID is not defined 
+[2022-12-11 17:55:14] error Error in addProductInCartContoller ReferenceError: trimID is not defined 
+[2022-12-11 17:56:44] error Error in saveOrderController TypeError: this.getLast is not a function 
+[2022-12-11 18:06:28] error Error in saveOrderController TypeError: Cannot read properties of undefined (reading 'orders') 
+[2022-12-11 18:08:27] error Error in saveOrderController TypeError: Cannot read properties of undefined (reading 'orders') 
+[2022-12-11 18:09:10] error Error in saveOrderController TypeError: Cannot read properties of undefined (reading 'orders') 
+[2022-12-11 18:10:46] error Error in saveOrderController TypeError: Cannot read properties of undefined (reading 'orders') 
+[2022-12-11 18:14:20] error Error in saveOrderController TypeError: Cannot read properties of undefined (reading 'orders') 
+[2022-12-11 18:15:24] error Error in saveOrderController TypeError: Cannot read properties of undefined (reading 'orders') 
+[2022-12-11 18:16:34] error Error in saveOrderController TypeError: Cannot read properties of undefined (reading 'orders') 

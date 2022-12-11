@@ -5,7 +5,7 @@ import { productService } from "../services/services.js";
 import { cartService } from "../services/services.js";
 
 const { getAllProducts, getProductsByCategory, getProductById } = productService;
-const { getByIdAndPopulate } = cartService;
+const {getByIdAndPopu } = cartService;
 
 const viewMenuController = async (req, res) => {
   logger.log(
@@ -21,6 +21,7 @@ const viewMenuController = async (req, res) => {
     products = await getAllProducts();
   } else {
     products = await getProductsByCategory(cat);
+    if (!products) products = [];
   }
   res.render("pages/menu.ejs", { user, products });
 };
@@ -53,7 +54,7 @@ const viewCartController = async (req, res) => {
   const token = req.cookies[dotenvConfig.jwt.COOKIE];
   if (!token) return res.redirect("/login");
   const user = jwt.verify(token, dotenvConfig.jwt.SECRET);
-  let cart = await getByIdAndPopulate(user.cart);
+  let cart = await getByIdAndPopu(user.cart);
   let products = cart[0].products;
   products.sort((x, y) => x.product.price - y.product.price); //so that it always appears in the same order
   res.render("pages/cart.ejs", { user, products });

@@ -29,7 +29,6 @@ export default class ProductRepository extends GenericRepository {
     }
 
     getProductsByCategory = (cat) => {
-        return this.getBy({ category: cat })
+        return this.getAll({ category: cat })
     }
 }
-

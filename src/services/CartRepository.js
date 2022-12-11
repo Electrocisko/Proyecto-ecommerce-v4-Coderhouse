@@ -1,5 +1,7 @@
 import GenericRepository from "./GenericRepository.js";
 import Cart from "../models/Cart.js";
+import { ObjectId } from "mongodb";
+
 
 export default class CartRepository extends GenericRepository {
     constructor(dao) {
@@ -25,11 +27,12 @@ export default class CartRepository extends GenericRepository {
     updateCart = (id, data) => {
         return this.update(
             { _id: id },
-            { $set: data })
+            { $set: data }
+            )
     }
 
-    getByIdAndPopulate = (id) => {
-        return this.getByIdAndPopulate(
+    getByIdAndPopu = (id) => {
+        return this.getByAndPopulate(
             { _id: id },
             {
                 path: "products.product"
@@ -37,3 +40,4 @@ export default class CartRepository extends GenericRepository {
         )
     }
 }
+

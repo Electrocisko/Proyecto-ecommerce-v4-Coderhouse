@@ -20,12 +20,15 @@ export default class GenericRepository {
         return this.dao.delete(params,this.model);
     }
 
-    update = (data) => {
-        return this.dao.update(data,this.model);
+    update = (id,data) => {
+        return this.dao.update(id,data,this.model);
     }
 
     getLast = () => {
-        return this.dao.findOne.limit(1).sort({$natural:-1})
+
+        console.log('PASO ACA???')
+
+        return this.dao.last(this.model)
     }
 
     drop = (params) => {
@@ -33,7 +36,7 @@ export default class GenericRepository {
     }
 
     getByAndPopulate = (params,path) => {
-        return this.dao.find(params).populate(path)
+        return this.dao.find(params,this.model).populate(path)
     }
 
 }

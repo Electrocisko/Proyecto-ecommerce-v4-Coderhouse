@@ -1,8 +1,11 @@
 import { ObjectId } from "mongodb";
 import logger from "../config/winston.config.js";
 import { cartService } from "../services/services.js";
+import { productService } from "../services/services.js";
 
-const { getAllCarts, saveCart, getCartById, deleteCartById, updateCart ,getByIdAndPopulate } = cartService;
+const { getProductById } = productService;
+
+const { getAllCarts, saveCart, getCartById, deleteCartById, updateCart ,getByIdAndPopu} = cartService;
 
 const getCartsController = async (req, res) => {
   try {
@@ -109,7 +112,7 @@ const getProductsInCartController = async (req, res) => {
     let cid = req.params.cid;
     if (!ObjectId.isValid(cid))
       return res.status(400).send({ status: "error", error: "invalid id" });
-    let result = await getByIdAndPopulate(cid);
+    let result = await getByIdAndPopu(cid);
     if (!result[0])
       return res
         .status(400)
@@ -165,7 +168,7 @@ const addProductInCartContoller = async (req, res) => {
     newData = {
       products: productsInCart,
     };
-    let result = await updateCart(cartID, newData);
+  let result = await updateCart(cartID, newData);
     return res.status(200).send(result);
   } catch (error) {
     logger.log("error", `Error in addProductInCartContoller ${error} `);

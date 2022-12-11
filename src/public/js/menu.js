@@ -18,7 +18,10 @@ eventList.forEach((element) => {
       },
     })
       .then((response) => response.json())
-      .then(() => {
+      .then((data) => {
+
+        console.log(data)/////////////////////////////////////////////////////////////////////////////////////////////////////
+
         Swal.fire({
           position: "top-end",
           icon: "success",

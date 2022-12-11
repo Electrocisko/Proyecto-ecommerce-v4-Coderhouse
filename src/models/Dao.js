@@ -26,14 +26,16 @@ export default class Dao {
 
     getAll = (params, entity) => {
         if (!this.models[entity]) throw new Error('Entity does not exist')
-        return this.models[entity].find()
+        return this.models[entity].find(params)
+    }
+
+    find = (params, entity) => {
+        if (!this.models[entity]) throw new Error('Entity does not exist');
+        return this.models[entity].find(params);
     }
 
     findOne = (params, entity) => {
-        console.log('entity', entity)
-
-        console.log('params', params)
-        //if (!this.models[entity]) throw new Error('Entity does not exist');
+        if (!this.models[entity]) throw new Error('Entity does not exist');
         return this.models[entity].findOne(params);
     }
 
@@ -47,9 +49,15 @@ export default class Dao {
         return this.models[entity].deleteOne(params);
     }
 
-    update = (data, entity ) => {
+    update = (id,data, entity ) => {
         if (!this.models[entity]) throw new Error('Entity does not exist');
-        return this.models[entity].updateOne(data);
+        return this.models[entity].updateOne(id,data);
+    }
+
+    last = (entity) => {
+        if (!this.models[entity]) throw new Error('Entity does not exist');
+        //return this.models[entity].findOne.limit(1).sort({$natural:-1})
+        return this.models[entity].find().sort({$natural:-1}).limit(1);
     }
 }
 
