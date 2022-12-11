@@ -25,13 +25,16 @@ export default class Dao {
     }
 
     getAll = (params, entity) => {
-        if (!this.model[entity]) throw new Error('Entity does not exist')
-        return this.models[entity].find(params)
+        if (!this.models[entity]) throw new Error('Entity does not exist')
+        return this.models[entity].find()
     }
 
     findOne = (params, entity) => {
-        if (!this.models[entity]) throw new Error('Entity does not exist');
-        return this.models[entity].findOne(params).lean();
+        console.log('entity', entity)
+
+        console.log('params', params)
+        //if (!this.models[entity]) throw new Error('Entity does not exist');
+        return this.models[entity].findOne(params);
     }
 
     save = (document, entity) => {

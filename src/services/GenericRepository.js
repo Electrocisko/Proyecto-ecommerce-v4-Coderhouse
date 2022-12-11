@@ -9,7 +9,7 @@ export default class GenericRepository {
     }
 
     getBy = (params) => {
-        return this.dao.findOne(params),this.model;
+        return this.dao.findOne(params,this.model);
     }
 
     save = (data) => {
