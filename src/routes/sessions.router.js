@@ -6,6 +6,7 @@ import {
   loginFailControler,
   registerFailControler
 } from "../controllers/sessions.controller.js";
+import { mailRegisterController } from '../controllers/messages.controllers.js'
 import upLoader from "../helpers/storageImg.js";
 import passport from "passport";
 
@@ -19,6 +20,7 @@ router.post(
     failureRedirect: "/api/sessions/registerfail",
     passReqToCallback: true,
   }),
+  mailRegisterController,
   registerController
 );
 

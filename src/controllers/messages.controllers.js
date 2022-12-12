@@ -1,19 +1,31 @@
 import nodemailer from 'nodemailer';
 import dotenvConfig from "../config/dotenv.config.js";
+import logger from '../config/winston.config.js';
 
-let email = dotenvConfig.nodemail.NM_EMAIL;
-let code = dotenvConfig.nodemail.NM_CODE;
+// let email = dotenvConfig.nodemail.NM_EMAIL;
+// let code = dotenvConfig.nodemail.NM_CODE;
+
+// const transporter = nodemailer.createTransport({
+//     service: 'gmail',
+//     port: 587,
+//     auth: {
+//         user: email,
+//         pass: code
+//     }
+// });
+
+let userMail = 'electrocisko@gmail.com'
 
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.ethereal.email',
     port: 587,
     auth: {
-        user: email,
-        pass: code
+        user: 'darrel.legros65@ethereal.email',
+        pass: '5pxVhySmvngXGFWZcz'
     }
 });
 
-const mailController =  async (req,res) => {
+const mailOrderController =  async (req,res) => {
     try {
         let {message, cartId, userMail } = req.body;
         if (!message || !cartId || !userMail)
@@ -40,8 +52,40 @@ const mailController =  async (req,res) => {
     }
 }
 
+
+const mailRegisterController =  (req,res,next) => {
+    try {
+        let text = `
+        <h3>Usuario nuevo registrado</h3>
+        <h4>Datos: </h4>
+        <p><strong>Nombre completo: </strong>${req.user.name}</p>
+        <p><strong>email: </strong>${req.user.email}</p>
+        <p><strong>Dirección: </strong>${req.user.address}</p>
+        <p><strong>Telefono Nro: </strong>${req.user.phoneNumber}</p>
+        <p><strong>ID de carrito asociado: </strong>${req.user.cart}</p>
+        <p><strong>Fecha y Hora del registro: </strong>${req.user.created_at}</p>
+        `
+         transporter.sendMail({
+            from: 'Ecommerce-Coderhouse',
+            to: userMail,
+            subject: `Usuario Nuevo Registrado`,
+            html: text
+        })
+        next();
+    } catch (error) {
+        logger.log("error", `Error in mailRegisterController ${error} `);
+        res.status(500).send({ error: error, message: "couldnt sendt register mail" });
+    }
+}
+
+
+
+
+
+
 export {
-    mailController
+    mailOrderController,
+    mailRegisterController
 }
 
 

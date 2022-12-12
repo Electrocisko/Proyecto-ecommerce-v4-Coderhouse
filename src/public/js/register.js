@@ -16,7 +16,10 @@ const handleSubmit = (evt, target, route) => {
     body: formData,
   })
     .then((result) => result.json())
-    .then((json) => succes(json));
+    .then((json) => {
+      succes(json);
+    }
+    );
 };
 
 form.addEventListener("submit", (e) => {

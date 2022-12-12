@@ -117,7 +117,7 @@ const handleSubmit = (url, order) => {
 
       let orderMail = { message: text, cartId, userMail };
 
-      fetch("/api/messages/mail", {
+      fetch("/api/messages/mail/order", {
         method: "POST",
         body: JSON.stringify(orderMail),
         headers: {
