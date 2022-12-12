@@ -2,28 +2,18 @@ import nodemailer from 'nodemailer';
 import dotenvConfig from "../config/dotenv.config.js";
 import logger from '../config/winston.config.js';
 
-// let email = dotenvConfig.nodemail.NM_EMAIL;
-// let code = dotenvConfig.nodemail.NM_CODE;
-
-// const transporter = nodemailer.createTransport({
-//     service: 'gmail',
-//     port: 587,
-//     auth: {
-//         user: email,
-//         pass: code
-//     }
-// });
-
-let userMail = 'electrocisko@gmail.com'
+let email = dotenvConfig.nodemail.NM_EMAIL;
+let code = dotenvConfig.nodemail.NM_CODE;
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
+    service: 'gmail',
     port: 587,
     auth: {
-        user: 'darrel.legros65@ethereal.email',
-        pass: '5pxVhySmvngXGFWZcz'
+        user: email,
+        pass: code
     }
 });
+
 
 const mailOrderController =  async (req,res) => {
     try {
@@ -67,7 +57,7 @@ const mailRegisterController =  (req,res,next) => {
         `
          transporter.sendMail({
             from: 'Ecommerce-Coderhouse',
-            to: userMail,
+            to: email,
             subject: `Usuario Nuevo Registrado`,
             html: text
         })
@@ -77,11 +67,6 @@ const mailRegisterController =  (req,res,next) => {
         res.status(500).send({ error: error, message: "couldnt sendt register mail" });
     }
 }
-
-
-
-
-
 
 export {
     mailOrderController,

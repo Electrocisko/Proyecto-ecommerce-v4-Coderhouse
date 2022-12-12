@@ -1,6 +1,2 @@
 
-[2022-12-12 09:43:39] error Error in mailRegisterController ReferenceError: userMail is not defined 
-[2022-12-12 11:52:39] error Error in mailRegisterController ReferenceError: next is not defined 
-[2022-12-12 12:00:40] error Error in mailRegisterController ReferenceError: next is not defined 
-[2022-12-12 12:02:33] error Error in mailRegisterController ReferenceError: next is not defined 
-[2022-12-12 12:14:49] error Error in mailRegisterController ReferenceError: next is not defined 
+
