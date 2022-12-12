@@ -25,9 +25,6 @@ export default class GenericRepository {
     }
 
     getLast = () => {
-
-        console.log('PASO ACA???')
-
         return this.dao.last(this.model)
     }
 

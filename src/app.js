@@ -34,7 +34,6 @@ const swaggerOptions = {
 const specs =  swaggerJsdoc(swaggerOptions)
 
 
-
 // Template config engine
 app.set('views',__dirname+'/views');
 app.set('view engine', 'ejs');
