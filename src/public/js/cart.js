@@ -12,8 +12,7 @@ let orderNro;
 let pid;
 let newStock;
 let inCart;
-
-let obje;
+let update;
 
 for (let index = 0; index < array.length; index++) {
   const element = array[index];
@@ -30,7 +29,7 @@ totalPrice.innerHTML = `<h3> Precio Total : ${currency} Pesos `;
 total.append(totalPrice);
 
 let emptyCart = (id) => {
-  let url = `/api/carts/${id}`;
+ 
   Swal.fire({
     title: "Esta seguro?",
     icon: "warning",
@@ -54,12 +53,12 @@ let emptyCart = (id) => {
               .then((response) => response.json())
               .then((data) => {
                 newStock = data.stock + inCart;
-                obje = {
+                update = {
                   stock: newStock,
                 };
                 fetch(`/api/products/${result[0].products[i].product._id}`, {
                   method: "PUT",
-                  body: JSON.stringify(obje),
+                  body: JSON.stringify(update),
                   headers: {
                     "Content-type": "application/json; charset=UTF-8",
                   },
