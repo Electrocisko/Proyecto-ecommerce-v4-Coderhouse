@@ -10,6 +10,9 @@ let addressBuyer = document.getElementById("address-buyer").textContent;
 let sum = 0;
 let orderNro;
 
+let obje;
+let updateStock = [];
+
 for (let index = 0; index < array.length; index++) {
   const element = array[index];
   sum = parseFloat(element.textContent) + sum;
@@ -36,13 +39,45 @@ let emptyCart = (id) => {
   }).then((result) => {
     if (result.isConfirmed) {
       Swal.fire("Borrado!", "Tu carrito se ha vaciado.");
-      fetch(url, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: null,
-      }).then(window.history.back());
+
+      let url = "/api/carts/" + cartId + "/products";
+      fetch(url)
+        .then((response) => response.json())
+        .then((result) => {
+          for (let i = 0; i < result[0].products.length; i++) {
+            obje = {
+              _id: result[0].products[i].product._id,
+              quantity: result[0].products[i].quantity,
+            };
+            //updateStock.push(obje)
+
+            url = `/api/products/${result[0].products[i].product._id}`;
+            fetch(url, {
+              method: "PUT",
+              body: JSON.stringify(obje),
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+              },
+            });
+          }
+
+          // const items = result[0].products.map((item) => {
+          //   return {
+          //     name: item.product.name,
+          //     quantity: item.quantity,
+          //   };
+
+          console.log(updateStock);
+
+          fetch(`/api/carts/${cartId}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: null,
+          }).then;
+          //window.history.back()
+        });
     }
   });
 };
