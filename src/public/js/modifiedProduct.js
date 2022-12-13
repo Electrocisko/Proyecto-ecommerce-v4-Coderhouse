@@ -29,7 +29,6 @@ const handleSubmit = (evt, form, route) => {
   evt.preventDefault();
   let url = route+'/'+id.value;
   let formData = new FormData(form);
-  console.log(formData.get('thumbnail'));
   fetch(url, {
     method: "PUT",
     body: formData,

@@ -128,19 +128,40 @@ const handleSubmit = (url, order) => {
 };
 
 let addProduct = (prodID, cartId) => {
-  let url = `/api/carts/${cartId}/products`;
-  fetch(url, {
-    method: "PUT",
-    body: JSON.stringify({
-      product: prodID,
-    }),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  })
+  fetch(`/api/products/${prodID}`)
     .then((response) => response.json())
-    .then(() => {
-      location.reload();
+    .then((json) => {
+      if (json.stock <= 0) {
+        Swal.fire("Sin stock");
+      } else {
+        console.log("con stock");
+        let url = `/api/carts/${cartId}/products`;
+        fetch(url, {
+          method: "PUT",
+          body: JSON.stringify({
+            product: prodID,
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        })
+          .then((response) => response.json())
+          .then(() => {
+            fetch(`/api/products/${prodID}`, {
+              method: "PUT",
+              body: JSON.stringify({
+                stock: json.stock - 1,
+              }),
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+              },
+            })
+              .then((response) => response.json())
+              .then(() => {
+                location.reload();
+              });
+          });
+      }
     });
 };
 
@@ -157,6 +178,22 @@ let subtractProduct = (prodID, cartId) => {
   })
     .then((response) => response.json())
     .then(() => {
-      location.reload();
+      fetch(`/api/products/${prodID}`)
+        .then((response) => response.json())
+        .then((json) => {
+          fetch(`/api/products/${prodID}`, {
+            method: "PUT",
+            body: JSON.stringify({
+              stock: json.stock + 1,
+            }),
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+          })
+            .then((response) => response.json())
+            .then(() => {
+              location.reload();
+            });
+        });
     });
 };

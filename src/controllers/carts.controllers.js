@@ -144,7 +144,7 @@ const addProductInCartContoller = async (req, res) => {
         .send({ status: "error", error: "cart does not exist" });
     }
     let existProduct = await getProductById(addProduct.product);
-    if (existProduct === null) {
+   if (existProduct === null) {
       return res
         .status(400)
         .send({ status: "error", error: "product not exist" });
@@ -168,8 +168,11 @@ const addProductInCartContoller = async (req, res) => {
     newData = {
       products: productsInCart,
     };
-  let result = await updateCart(cartID, newData);
-    return res.status(200).send(result);
+  
+      let result = await updateCart(cartID, newData);
+
+      return res.status(200).send(result);
+    
   } catch (error) {
     logger.log("error", `Error in addProductInCartContoller ${error} `);
     res
