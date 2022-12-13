@@ -9,9 +9,11 @@ let addressBuyer = document.getElementById("address-buyer").textContent;
 
 let sum = 0;
 let orderNro;
+let pid;
+let newStock;
+let inCart;
 
 let obje;
-let updateStock = [];
 
 for (let index = 0; index < array.length; index++) {
   const element = array[index];
@@ -45,29 +47,25 @@ let emptyCart = (id) => {
         .then((response) => response.json())
         .then((result) => {
           for (let i = 0; i < result[0].products.length; i++) {
-            obje = {
-              _id: result[0].products[i].product._id,
-              quantity: result[0].products[i].quantity,
-            };
-            //updateStock.push(obje)
+            pid = result[0].products[i].product._id;
 
-            url = `/api/products/${result[0].products[i].product._id}`;
-            fetch(url, {
-              method: "PUT",
-              body: JSON.stringify(obje),
-              headers: {
-                "Content-type": "application/json; charset=UTF-8",
-              },
-            });
+            inCart = result[0].products[i].quantity;
+            fetch(`/api/products/${pid}`)
+              .then((response) => response.json())
+              .then((data) => {
+                newStock = data.stock + inCart;
+                obje = {
+                  stock: newStock,
+                };
+                fetch(`/api/products/${result[0].products[i].product._id}`, {
+                  method: "PUT",
+                  body: JSON.stringify(obje),
+                  headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                  },
+                });
+              });
           }
-
-          // const items = result[0].products.map((item) => {
-          //   return {
-          //     name: item.product.name,
-          //     quantity: item.quantity,
-          //   };
-
-          console.log(updateStock);
 
           fetch(`/api/carts/${cartId}`, {
             method: "PUT",
@@ -76,7 +74,7 @@ let emptyCart = (id) => {
             },
             body: null,
           }).then;
-          //window.history.back()
+          location.reload();
         });
     }
   });
