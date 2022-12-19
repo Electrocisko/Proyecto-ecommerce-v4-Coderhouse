@@ -5,10 +5,11 @@ let MONGO_URI;
 let args = process.argv.slice(2)[0]
 
 if (args === 'PROD') {
-    MONGO_URI = process.env.MONGO_URL_PROD
+   // MONGO_URI = process.env.MONGO_URL_PROD
+    MONGO_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PWD}@cluster0.rvl2uyz.mongodb.net/${process.env.MONGO_DB_PROD}?retryWrites=true&w=majority`
 }
 else {
-    MONGO_URI = process.env.MONGO_URL_DEV
+    MONGO_URI =  `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PWD}@cluster0.rvl2uyz.mongodb.net/${process.env.MONGO_DB_DEV}?retryWrites=true&w=majority`
 }
 
 export default {
