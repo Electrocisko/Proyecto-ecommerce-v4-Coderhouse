@@ -17,10 +17,29 @@ To deploy this project run
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`API_KEY`
+`LOGS`
 
-`ANOTHER_API_KEY`
+`JWT_SECRET`
 
+`JWT_COOKIE`
+
+`NM_EMAIL`
+
+`NM_CODE`
+
+`NM_ADDRESSEE`
+
+`ADMIN_EMAIL`
+
+`ADMIN_PWD`
+
+`MONGO_USER`
+
+`MONGO_PWD`
+
+`MONGO_DB_PROD`
+
+`MONGO_DB_DEV`
 
 ## Run Locally
 
