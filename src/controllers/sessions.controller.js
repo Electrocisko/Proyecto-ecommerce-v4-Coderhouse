@@ -19,10 +19,6 @@ const registerController = async (req, res) => {
 
 const loginController = async (req, res) => {
   try {
-
-    console.log('USER',req.user)
-
-
     const { email, password } = req.body;
     const { name, _id, cart, imageUrl } = req.user;
     const loginUser = UserDtoPresenter(req.user)
