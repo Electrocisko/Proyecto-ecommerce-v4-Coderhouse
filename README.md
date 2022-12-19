@@ -53,7 +53,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd proyecto-v4>
+  cd proyecto-v4
 ```
 
 Install dependencies
