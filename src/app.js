@@ -14,12 +14,15 @@ import initializePassport from './config/passport.config.js';
 import passport from 'passport';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUiExpress from 'swagger-ui-express';
+import os from 'os';
+import cluster from 'cluster';
 
 
 
 //initializations
-const PORT = dotenvConfig.app.PORT
-const HOST = dotenvConfig.app.HOST 
+const CPUs = os.cpus().length;
+const PORT = dotenvConfig.app.PORT;
+const HOST = dotenvConfig.app.HOST ;
 const app = express();
 const swaggerOptions = {
     definition: {
@@ -64,8 +67,20 @@ app.use(function (req, res, next) {
     });
   });
 
-//starting de server
-const server = app.listen(PORT, () => {
-    logger.log('info',`Server listen in http://${HOST}:${PORT}`)
-});
+//starting de server with cluster
+if(cluster.isPrimary) {
+    logger.log('info',`Process Primary ${process.pid}`)
+    for(let i=0; i<CPUs; i++) {
+        cluster.fork();
+    }
+}
+else {
+    app.listen(PORT, () => {
+        logger.log('info',`Process worker ${process.pid}`)
+        logger.log('info',`Server listen in http://${HOST}:${PORT}`)
+    });
+}
+
+
+
 
