@@ -75,6 +75,7 @@ const initializePassport = () => {
       });
   } catch (error) {
     logger.log("error", `Error in passport ${error}`);
+    done(error,false)
   }
 };
 
