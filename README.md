@@ -1,6 +1,17 @@
 # Proyecto-ecommerce-v4-Coderhouse
 
-# Coderhouse Backend Course Project
+Course: Backend Programming
+
+Commission 31025 Coderhouse
+
+Professor: Mauricio Espinosa Flores
+
+Tutor: Carlos Benetti
+
+Student: Francisco Zuidwijk
+
+
+#  Project
 
 You will develop the backend of an e-commerce application to be able to sell products in a category of your choice. The server will be based on a layered design, oriented to MVC and its code will contain modern programming structures of the powerful ECMAScript language. The server format will be a project consisting of a file structure, folders, configurations and a database, ready to run under the Node.js environment.
 
@@ -67,7 +78,23 @@ Start the server
 ```bash
   npm run start
 ```
+## Dependencies:
 
+- bcrypt
+- cookie-parser
+- dotenv
+- ejs
+- express
+- jsonwebtoken
+- mongodb
+- mongoose
+- multer
+- nodemailer
+- passport
+- passport-local
+- swagger-jsdoc
+- swagger-ui-express
+- winston
 
 ## Languages and Tools:
 
