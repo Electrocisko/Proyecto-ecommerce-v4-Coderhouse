@@ -18,7 +18,6 @@ import os from 'os';
 import cluster from 'cluster';
 
 
-
 //initializations
 const CPUs = os.cpus().length;
 const PORT = dotenvConfig.app.PORT;
