@@ -13,10 +13,10 @@ modificar.addEventListener("click", () => {
 });
 
 const getProduct = (id) => {
-    let url = '/api/products/'+id
   fetch(`/api/products/${id}`)
     .then((resp) => resp.json())
     .then((data) => {
+      if(data.status = 'error') Swal.fire('ID no Valido o Inexistente')
       productName.value = data.name;
       productDescription.value = data.description;
       productCategory.value = data.category;
