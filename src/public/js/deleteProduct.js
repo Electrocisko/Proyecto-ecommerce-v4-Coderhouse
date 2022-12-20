@@ -20,5 +20,5 @@ const deleteProductById = (item) => {
 };
 
 const showResult = (result) => {
-    alert(result)
+    Swal.fire(result)
 }

@@ -11,6 +11,6 @@ const handleSubmit = (evt, form, route) => {
 
 productForm.addEventListener("submit", (e) => {
   handleSubmit(e, e.target, "api/products");
-  alert("Agregado");
+  Swal.fire("Agregado");
   productForm.reset();
 });

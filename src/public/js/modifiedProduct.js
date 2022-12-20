@@ -16,7 +16,7 @@ const getProduct = (id) => {
   fetch(`/api/products/${id}`)
     .then((resp) => resp.json())
     .then((data) => {
-      if(data.status = 'error') Swal.fire('ID no Valido o Inexistente')
+      if(!data._id) { Swal.fire('ID no Valido o Inexistente') };
       productName.value = data.name;
       productDescription.value = data.description;
       productCategory.value = data.category;
@@ -37,6 +37,6 @@ const handleSubmit = (evt, form, route) => {
 
 productForm.addEventListener("submit", (e) => {
   handleSubmit(e, e.target, "api/products");
-  alert("Agregado");
+  Swal.fire("Agregado");
   productForm.reset();
 });

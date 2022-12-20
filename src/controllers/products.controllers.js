@@ -2,8 +2,14 @@ import logger from "../config/winston.config.js";
 import { ObjectId } from "mongodb";
 import { productService } from "../services/services.js";
 
-const {getAllProducts, saveProducts, getProductById, deleteProductById, updateProduct, getProductsByCategory} = productService;
-
+const {
+  getAllProducts,
+  saveProducts,
+  getProductById,
+  deleteProductById,
+  updateProduct,
+  getProductsByCategory,
+} = productService;
 
 const getProductsController = async (req, res) => {
   try {
@@ -51,7 +57,9 @@ const getProductByIdController = async (req, res) => {
       return res
         .status(400)
         .send({ status: "error", error: "nonexistent product" });
-    return res.status(200).json(data);
+    else {
+      return res.status(200).json(data);
+    }
   } catch (error) {
     logger.log("error", `Error in getProductByIdController ${error} `);
     res.status(500).send({ error: error, message: "couldnt get product" });
@@ -68,7 +76,7 @@ const deleteProductByIdControler = async (req, res) => {
       return res
         .status(400)
         .send({ status: "error", error: "nonexistent product" });
-    return res.status(200).send({ status:'succes', data });
+    return res.status(200).send({ status: "succes", data });
   } catch (error) {
     logger.log("error", `Error in deleteProductByIdController ${error} `);
     res.status(500).send({ error: error, message: "couldnt delete product" });
@@ -89,10 +97,12 @@ const updateProductControler = async (req, res) => {
       return res
         .status(400)
         .send({ status: "error", error: "nonexistent product" });
-    return res.status(201).send({
-      message: "Modified product",
-      status: result,
-    });
+    else {
+      return res.status(201).send({
+        message: "Modified product",
+        status: result,
+      });
+    }
   } catch (error) {
     logger.log("error", `Error in updateProductController ${error} `);
     res.status(500).send({ error: error, message: "couldnt update product" });
@@ -103,12 +113,10 @@ const getProductsByCategoryController = async (req, res) => {
   let cat = req.params.cat;
   let result = await getProductsByCategory(cat);
   if (result.length === 0)
-    return res
-      .status(400)
-      .send({
-        status: "error",
-        error: "non-existent product in category or category non-existent",
-      });
+    return res.status(400).send({
+      status: "error",
+      error: "non-existent product in category or category non-existent",
+    });
   return res.status(200).json(result);
 };
 
