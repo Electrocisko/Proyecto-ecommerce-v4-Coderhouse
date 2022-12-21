@@ -131,9 +131,45 @@ paths:
           description: nonexistent product or invalid id
         "500":
           description: couldnt delete product
-         
-
-        
+    put:
+      summary: Modify the product by id
+      tags:
+        - Products
+      parameters:
+      - name: id
+        in: path
+        description: path parameter takes the product id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: The product with given id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        "400":
+          description: nonexistent product or invalid id
+        "500":
+          description: couldnt get product      
+  /api/products/{cat}:
+    get:
+      summary: get products by category
+      tags:
+        - Products
+      parameters:
+      - name: cat
+        in: path
+        description: path parameter takes the category
+        required: true
+        type: string
+      responses:
+        "200":
+          description: returns the array of products by category
+        "400":
+          description: nonexistent category
+        "500":
+          description: couldnt get products
 
 
 

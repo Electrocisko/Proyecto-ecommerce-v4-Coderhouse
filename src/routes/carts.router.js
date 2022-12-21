@@ -21,13 +21,13 @@ router.get('/:cid',getCartByIdController);
 
 router.delete('/:cid',deleteCartByIdControler);
 
+router.put('/:cid',deletteAllProductsInCartController);
+
 router.get("/:cid/products", getProductsInCartController );
 
 router.put("/:cid/products", addProductInCartContoller );
 
 router.put('/:cid/subtract', subtractProductInCartController);
-
-router.put('/:cid',deletteAllProductsInCartController);
 
 router.put('/:cid/deleteproduct', deleteProductByIdInCartController);
 

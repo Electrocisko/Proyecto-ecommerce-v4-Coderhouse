@@ -28,7 +28,7 @@ const swaggerOptions = {
         openapi: '3.0.1',
         info: {
             title: 'API ecommerce-CoderHouse',
-            description: 'Ecommerce project for the CoderHouse Back End course'
+            description: 'https://github.com/Electrocisko/Proyecto-ecommerce-v4-Coderhouse#readme'
         }
     },
     apis: [`${__dirname}/docs/**/*.yaml`]
@@ -59,7 +59,7 @@ app.use('/api/carts', cartsRouter);
 app.use('/api/sessions', sessionsRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/api/messages', messagesRouter);
-app.use('/apidocs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
+app.use('/api/docs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
 app.use(function (req, res, next) {
     res.status(404).send({
       message: "Error route not implemented",
