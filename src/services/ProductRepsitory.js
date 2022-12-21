@@ -31,4 +31,15 @@ export default class ProductRepository extends GenericRepository {
     getProductsByCategory = (cat) => {
         return this.getAll({ category: cat })
     }
+
+    getProductByCode = (code) => {
+        return this.getBy({code: code})
+    }
+
+    updateProductByCode = (code, modifiedProduct) => {
+        return this.update(
+            { code: code },
+            { $set: modifiedProduct })
+    }
+
 }

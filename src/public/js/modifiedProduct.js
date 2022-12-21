@@ -6,7 +6,8 @@ let productDescription = document.getElementById('description');
 let productCategory = document.getElementById('category');
 let productPrice = document.getElementById('price');
 let productStock = document.getElementById('stock');
-let productThumbnail = document.getElementById('thumbnail')
+let productThumbnail = document.getElementById('thumbnail');
+let productCode = document.getElementById('code');
 
 modificar.addEventListener("click", () => {
     getProduct(id.value)
@@ -22,6 +23,7 @@ const getProduct = (id) => {
       productCategory.value = data.category;
       productPrice.value = data.price;
       productStock.value = data.stock;
+      productCode.value = data.code;
     });
 };
 

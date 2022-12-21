@@ -9,6 +9,8 @@ const {
   deleteProductById,
   updateProduct,
   getProductsByCategory,
+  getProductByCode,
+  updateProductByCode
 } = productService;
 
 const getProductsController = async (req, res) => {
@@ -33,6 +35,7 @@ const postProductsController = async (req, res) => {
       !data.name ||
       !data.description ||
       !data.category ||
+      !data.code ||
       !data.price ||
       !data.stock
     )
@@ -120,6 +123,47 @@ const getProductsByCategoryController = async (req, res) => {
   return res.status(200).json(result);
 };
 
+const getProductByCodeController = async (req, res) => {
+  try {
+    let code = req.params.code;
+    let data = await getProductByCode(code);
+    if (!data)
+      return res
+        .status(400)
+        .send({ status: "error", error: "nonexistent product" });
+    else {
+      return res.status(200).json(data);
+    }
+  } catch (error) {
+    logger.log("error", `Error in getProductByIdController ${error} `);
+    res.status(500).send({ error: error, message: "couldnt get product" });
+  }
+};
+
+const updateProductByCodeController = async (req, res) => {
+  try {
+    let code = req.params.code;
+    let newData = req.body;
+    if (req.file !== undefined) {
+      newData.thumbnail = req.file.filename;
+    }
+    let result = await updateProductByCode(code, newData);
+    if (result.modifiedCount === 0)
+      return res
+        .status(400)
+        .send({ status: "error", error: "nonexistent product" });
+    else {
+      return res.status(201).send({
+        message: "Modified product",
+        status: result,
+      });
+    }
+  } catch (error) {
+    logger.log("error", `Error in updateProductController ${error} `);
+    res.status(500).send({ error: error, message: "couldnt update product" });
+  }
+};
+
 export {
   getProductsController,
   postProductsController,
@@ -127,4 +171,6 @@ export {
   deleteProductByIdControler,
   updateProductControler,
   getProductsByCategoryController,
+  getProductByCodeController,
+  updateProductByCodeController
 };
