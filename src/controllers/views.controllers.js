@@ -127,6 +127,18 @@ const viewProductDeleteController = async (req, res) => {
   res.render("pages/deleteProduct.ejs");
 };
 
+const viewModifiedProductCodeController = async (req, res) => {
+  logger.log(
+    "info",
+    `request type ${req.method} en route ${req.path} ${new Date()}`
+  );
+  const token = req.cookies[dotenvConfig.jwt.COOKIE];
+  if (!token) return res.redirect("/login");
+  const user = jwt.verify(token, dotenvConfig.jwt.SECRET);
+  if (user.role === "user") return res.redirect("/menu");
+  res.render("pages/modifiedProductCode.ejs");
+};
+
 export {
   viewLoginController,
   viewMenuController,
@@ -139,4 +151,5 @@ export {
   viewModifiedProductController,
   viewProductDetailController,
   viewProductDeleteController,
+  viewModifiedProductCodeController
 };

@@ -27,7 +27,7 @@ router.get('/categorys/:cat', getProductsByCategoryController);
 
 router.get('/code/:code', getProductByCodeController);
 
-router.put('/code/:code', updateProductByCodeController)
+router.put('/code/:code', upLoader.single('thumbnail'), updateProductByCodeController);
 
 
 export default router;

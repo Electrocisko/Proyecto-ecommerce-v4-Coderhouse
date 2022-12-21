@@ -10,7 +10,8 @@ import {
   viewEnterProductController,
   viewModifiedProductController,
   viewProductDetailController,
-  viewProductDeleteController
+  viewProductDeleteController,
+  viewModifiedProductCodeController
 } from "../controllers/views.controllers.js";
 
 const router = new Router();
@@ -35,6 +36,8 @@ router.get('/modifiedproduct', viewModifiedProductController);
 
 router.get('/productdetail', viewProductDetailController);
 
-router.get('/deleteproduct', viewProductDeleteController)
+router.get('/deleteproduct', viewProductDeleteController);
+
+router.get('/modifiedproductcode', viewModifiedProductCodeController);
 
 export default router;
