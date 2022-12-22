@@ -20,7 +20,7 @@ const getProduct = (code) => {
   fetch(`/api/products/code/${code}`)
     .then((resp) => resp.json())
     .then((data) => {
-      if(!data.code) { Swal.fire('Codigo no Valido o Inexistente') };
+      if(!data.code) { Swal.fire(data.message) };
       productName.value = data.name;
       productDescription.value = data.description;
       productCategory.value = data.category;
@@ -39,8 +39,7 @@ productForm.addEventListener("submit", (e) => {
     body: formData,
   })
   .then((response) => response.json())
-  .then((data) => console.log('data',data))
+  .then((data) => Swal.fire(data.message))
   .catch((error) => console.log(error))
-  Swal.fire("Agregado");
   productForm.reset();
 });
