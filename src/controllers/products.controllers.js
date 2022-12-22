@@ -103,6 +103,13 @@ const updateProductControler = async (req, res) => {
     if (req.file !== undefined) {
       newData.thumbnail = req.file.filename;
     }
+    //validations so that product code is not repeated
+    let originalCode = await getProductById(pid);
+    let newCode = await getProductByCode(req.body.code);
+    if (newCode?.code && newCode?.code !== originalCode.code)
+      return res
+        .status(400)
+        .send({ status: "error", message: "Repetead Code" });
     let result = await updateProduct(pid, newData);
     if (result.modifiedCount === 0)
       return res
@@ -155,8 +162,12 @@ const updateProductByCodeController = async (req, res) => {
     if (req.file !== undefined) {
       newData.thumbnail = req.file.filename;
     }
+    //validations so that product code is not repeated
     let existCode = await getProductByCode(req.body.code);
-    if (existCode.code && existCode.code !== code) return res.status(400).send({ status: 'error', message: 'Repetead Code'})
+    if (existCode.code && existCode.code !== code)
+      return res
+        .status(400)
+        .send({ status: "error", message: "Repetead Code" });
     let result = await updateProductByCode(code, newData);
     if (result.modifiedCount === 0)
       return res

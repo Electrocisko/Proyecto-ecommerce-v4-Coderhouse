@@ -34,11 +34,18 @@ const handleSubmit = (evt, form, route) => {
   fetch(url, {
     method: "PUT",
     body: formData,
-  });
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    Swal.fire(data.message);
+  })
+  productForm.reset();
 };
+
+
+
+
 
 productForm.addEventListener("submit", (e) => {
   handleSubmit(e, e.target, "api/products");
-  Swal.fire("Agregado");
-  productForm.reset();
 });

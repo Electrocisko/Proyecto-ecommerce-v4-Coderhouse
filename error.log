@@ -7,3 +7,6 @@
 [2022-12-21 08:54:00] error Error in getProductByIdController ReferenceError: pid is not defined 
 [2022-12-21 09:00:04] error Error in updateProductController CastError: Cast to ObjectId failed for value "MQA388" (type string) at path "_id" for model "products" 
 [2022-12-22 07:07:24] error Error in updateProductController ReferenceError: data is not defined 
+[2022-12-22 08:10:12] error Error in updateProductController TypeError: Cannot read properties of null (reading 'code') 
+[2022-12-22 08:12:14] error Error in updateProductController TypeError: Cannot read properties of null (reading 'code') 
+[2022-12-22 08:12:48] error Error in updateProductController TypeError: Cannot read properties of null (reading 'code') 

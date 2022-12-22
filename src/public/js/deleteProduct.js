@@ -5,7 +5,6 @@ let id = document.getElementById("productId");
 
 
 deletedProduct.addEventListener('click', (e) => {
-    console.log(id.value)
    deleteProductById(id.value);
    id.value = "";
 })
