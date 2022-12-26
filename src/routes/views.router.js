@@ -11,7 +11,8 @@ import {
   viewModifiedProductController,
   viewProductDetailController,
   viewProductDeleteController,
-  viewModifiedProductCodeController
+  viewModifiedProductCodeController,
+  viewOrdersController
 } from "../controllers/views.controllers.js";
 
 const router = new Router();
@@ -39,5 +40,7 @@ router.get('/productdetail', viewProductDetailController);
 router.get('/deleteproduct', viewProductDeleteController);
 
 router.get('/modifiedproductcode', viewModifiedProductCodeController);
+
+router.get('/orders', viewOrdersController);
 
 export default router;
