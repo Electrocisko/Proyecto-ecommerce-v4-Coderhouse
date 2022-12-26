@@ -2,6 +2,7 @@ import logger from "../config/winston.config.js";
 import dotenvConfig from "../config/dotenv.config.js";
 import jwt from "jsonwebtoken";
 import { cartService, orderService, productService } from "../services/services.js";
+import orderDtoPresenter from "../dto/ordersDTO.js";
 
 
 const { getAllProducts, getProductsByCategory, getProductById } = productService;
@@ -148,8 +149,9 @@ const viewOrdersController = async (req,res) => {
   if (!token) return res.redirect("/login");
   const user = jwt.verify(token, dotenvConfig.jwt.SECRET);
   if (user.role === "user") return res.redirect("/menu");
-  let orders = await orderService.getAllOrders();
-  res.render("pages/orders.ejs", { orders});
+  let ordersDb = await orderService.getAllOrders();
+  const orders = orderDtoPresenter(ordersDb)
+  res.render("pages/orders.ejs", { orders });
 }
 
 
