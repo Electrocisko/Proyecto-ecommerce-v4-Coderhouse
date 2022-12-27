@@ -3,8 +3,6 @@ import jwt from "jsonwebtoken";
 import dotenvConfig from "../config/dotenv.config.js";
 import UserDtoPresenter from "../dto/userDTO.js";
 
-
-
 const registerController = async (req, res) => {
   try {
     res.send({

@@ -9,7 +9,7 @@ const { saveUser, getUserByEmail, getUserById } = userService;
 
 const LocalStrategy = local.Strategy;
 
-let image = 'avatar.png'
+let image = "avatar.png";
 
 const initializePassport = () => {
   try {
@@ -23,13 +23,23 @@ const initializePassport = () => {
         },
         async (req, email, password, done) => {
           const { name, address, age, phoneNumber, passwordCheck } = req.body;
-          if (!name || !email || !address || !password || !age || !phoneNumber || !passwordCheck)
-            return done(null,false);
-          if (password !== passwordCheck) return done(null,false);
+          if (
+            !name ||
+            !email ||
+            !address ||
+            !password ||
+            !age ||
+            !phoneNumber ||
+            !passwordCheck
+          )
+            return done(null, false);
+          if (password !== passwordCheck) return done(null, false);
           let exist = await getUserByEmail(email);
-          if (exist) return done(null,false);
+          if (exist) return done(null, false);
           const hashedPassword = await createHash(password);
-          if (req.file) { image = req.file.filename }
+          if (req.file) {
+            image = req.file.filename;
+          }
           const cart = await saveCart();
           const user = {
             name,
@@ -58,7 +68,7 @@ const initializePassport = () => {
           if (!email || !password) return done(null, false);
           let user = await getUserByEmail(email);
           if (!user) return done(null, false);
-          let checkPassword = await isValidPassword(user,password);
+          let checkPassword = await isValidPassword(user, password);
           if (!checkPassword) return done(null, false);
           return done(null, user);
         }
@@ -66,16 +76,16 @@ const initializePassport = () => {
     );
 
     passport.serializeUser((user, done) => {
-        done(null, user._id);
-      });
-    
-      passport.deserializeUser(async (id, done) => {
-        let result = await getUserById(id);
-        return done(null, result);
-      });
+      done(null, user._id);
+    });
+
+    passport.deserializeUser(async (id, done) => {
+      let result = await getUserById(id);
+      return done(null, result);
+    });
   } catch (error) {
     logger.log("error", `Error in passport ${error}`);
-    done(error,false)
+    done(error, false);
   }
 };
 

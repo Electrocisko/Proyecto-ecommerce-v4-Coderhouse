@@ -5,7 +5,14 @@ import { productService } from "../services/services.js";
 
 const { getProductById } = productService;
 
-const { getAllCarts, saveCart, getCartById, deleteCartById, updateCart ,getByIdAndPopu} = cartService;
+const {
+  getAllCarts,
+  saveCart,
+  getCartById,
+  deleteCartById,
+  updateCart,
+  getByIdAndPopu,
+} = cartService;
 
 const getCartsController = async (req, res) => {
   try {
@@ -92,7 +99,7 @@ const deleteProductByIdInCartController = async (req, res) => {
         .status(400)
         .send({ status: "error", error: "product does not exist in cart" });
     } else {
-      productsInCart.splice(prodIndex, 1); 
+      productsInCart.splice(prodIndex, 1);
     }
     let newData = {
       products: productsInCart,
@@ -126,7 +133,6 @@ const getProductsInCartController = async (req, res) => {
   }
 };
 
-
 const addProductInCartContoller = async (req, res) => {
   try {
     let productsInCart;
@@ -144,7 +150,7 @@ const addProductInCartContoller = async (req, res) => {
         .send({ status: "error", error: "cart does not exist" });
     }
     let existProduct = await getProductById(addProduct.product);
-   if (existProduct === null) {
+    if (existProduct === null) {
       return res
         .status(400)
         .send({ status: "error", error: "product not exist" });
@@ -157,22 +163,21 @@ const addProductInCartContoller = async (req, res) => {
       (item) => item.product.toString() === addProduct.product.toString()
     );
     if (prodIndex === -1) {
-      productsInCart.push(addProduct); 
+      productsInCart.push(addProduct);
     } else {
       let newCuantity =
         productsInCart[prodIndex].quantity + addProduct.quantity;
       addProduct.quantity = newCuantity;
-      productsInCart.splice(prodIndex, 1); 
-      productsInCart.push(addProduct); 
+      productsInCart.splice(prodIndex, 1);
+      productsInCart.push(addProduct);
     }
     newData = {
       products: productsInCart,
     };
-  
-      let result = await updateCart(cartID, newData);
 
-      return res.status(200).send(result);
-    
+    let result = await updateCart(cartID, newData);
+
+    return res.status(200).send(result);
   } catch (error) {
     logger.log("error", `Error in addProductInCartContoller ${error} `);
     res
@@ -206,7 +211,6 @@ const deletteAllProductsInCartController = async (req, res) => {
   }
 };
 
-
 const subtractProductInCartController = async (req, res) => {
   let productsInCart;
   let cartID = req.params.cid;
@@ -234,26 +238,25 @@ const subtractProductInCartController = async (req, res) => {
   );
   if (prodIndex !== -1) {
     if (productsInCart[prodIndex].quantity === 1) {
-      productsInCart.splice(prodIndex, 1); 
+      productsInCart.splice(prodIndex, 1);
       let newData = {
         products: productsInCart,
       };
       let result = await updateCart(cartID, newData);
       return res.status(200).send(result);
     }
-    let newQuantity = productsInCart[prodIndex].quantity - subtractProduct.quantity;
+    let newQuantity =
+      productsInCart[prodIndex].quantity - subtractProduct.quantity;
     productsInCart[prodIndex].quantity = newQuantity;
     let newData = {
       products: productsInCart,
     };
     let result = await updateCart(cartID, newData);
     return res.status(200).send(result);
-  }
-  else {
-    return res.status(400).sendd({message: 'product not exist in cart'})
+  } else {
+    return res.status(400).sendd({ message: "product not exist in cart" });
   }
 };
-
 
 export {
   getCartsController,
