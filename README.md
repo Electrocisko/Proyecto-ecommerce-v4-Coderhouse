@@ -96,6 +96,14 @@ Start the server
 - swagger-ui-express
 - winston
 
+## devDependencies:
+
+- @faker-js/faker
+- chai
+- mocha
+- supertest
+
+
 ## Languages and Tools:
 
 <h3 align="left">Languages and Tools:</h3>
