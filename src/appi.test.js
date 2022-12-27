@@ -1,9 +1,14 @@
 import SuperTest from "supertest";
 import Chai from "chai";
 import { faker } from '@faker-js/faker';
+import dotenvConfig from "../src/config/dotenv.config.js";
+
+const PORT = dotenvConfig.app.PORT;
+const HOST = dotenvConfig.app.HOST;
+
 
 const expect = Chai.expect;
-const requester = SuperTest("http://localhost:8080");
+const requester = SuperTest(`http://${HOST}:${PORT}`);
 
 let randomPrice =parseInt(Math.random() * 100000000);
 let fakerMail = faker.internet.email()
@@ -27,7 +32,7 @@ describe("Products Testing", () => {
         stock: "4",
       };
       const response = await requester
-        .put("/api/products/637b6a6d909be982a42b673c")
+        .put("/api/products/639664747cbb6e804bf950ea")
         .send(product);
       const { _body } = response;
       expect(_body.status.modifiedCount).to.be.equal(1);
