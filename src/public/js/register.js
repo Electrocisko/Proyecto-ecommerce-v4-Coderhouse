@@ -17,7 +17,6 @@ const handleSubmit = (evt, target, route) => {
   })
     .then((result) => result.json())
     .then((json) => {
-      console.log(json)
       succes(json);
     }
     );

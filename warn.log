@@ -1,13 +1,3 @@
 
 
-[2022-12-12 15:50:20] error Error in addProductInCartContoller TypeError: res.satus is not a function 
-[2022-12-12 15:50:44] error Error in addProductInCartContoller Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client 
-[2022-12-21 08:53:12] error Error in getProductByIdController ReferenceError: pid is not defined 
-[2022-12-21 08:53:37] error Error in getProductByIdController ReferenceError: pid is not defined 
-[2022-12-21 08:53:54] error Error in getProductByIdController ReferenceError: pid is not defined 
-[2022-12-21 08:54:00] error Error in getProductByIdController ReferenceError: pid is not defined 
-[2022-12-21 09:00:04] error Error in updateProductController CastError: Cast to ObjectId failed for value "MQA388" (type string) at path "_id" for model "products" 
-[2022-12-22 07:07:24] error Error in updateProductController ReferenceError: data is not defined 
-[2022-12-22 08:10:12] error Error in updateProductController TypeError: Cannot read properties of null (reading 'code') 
-[2022-12-22 08:12:14] error Error in updateProductController TypeError: Cannot read properties of null (reading 'code') 
-[2022-12-22 08:12:48] error Error in updateProductController TypeError: Cannot read properties of null (reading 'code') 
+
