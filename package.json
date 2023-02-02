@@ -4,11 +4,14 @@
   "description": "",
   "main": "index.js",
   "type": "module",
+  "engines": {"node": "14.x"},
+  
   "scripts": {
     "dev": "nodemon src/app.js DEV",
     "start": "node src/app.js PROD" ,
     "test": "mocha src/appi.test.js "
   },
+  
   "author": "",
   "license": "ISC",
   "dependencies": {
